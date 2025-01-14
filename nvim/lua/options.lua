@@ -6,8 +6,8 @@ o.relativenumber = true
 o.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 
 -- fold
--- o.foldmethod = "expr"
--- o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldcolumn = "0"
 o.foldlevel = 99
 o.foldlevelstart = 99

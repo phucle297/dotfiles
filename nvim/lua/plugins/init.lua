@@ -89,7 +89,7 @@ local lspSaga = {
         ui = {
           title = true,
           -- Border type can be single, double, rounded, solid, shadow.
-          border = "single",
+          border = "rounded",
           winblend = 0,
           expand = "",
           collapse = "",
@@ -120,9 +120,29 @@ local tinyInline = {
 }
 local treeSitter = {
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "LspAttach",
-    priority = 1000, -- needs to be loaded in first
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufRead", "BufNewFile" },
+    build = ":TSUpdate",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "json",
+        "markdown",
+      },
+      highlight = {
+        enable = true, -- Enable syntax highlighting
+        additional_vim_regex_highlighting = false,
+      },
+      indent = {
+        enable = true, -- Enable smart indentation
+      },
+    },
   },
 }
 local leap = {
@@ -282,12 +302,31 @@ local ufo = {
     },
   },
 }
+local hlchunk = {
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+          style = "#ffea61",
+        },
+        line_num = {
+          enable = true,
+          style = "#a18c00",
+        },
+      }
+    end,
+  },
+}
 
 return mergeObjects(
   ai,
   cmp,
   conform,
   git,
+  hlchunk,
   hlslens,
   leap,
   logSitter,
