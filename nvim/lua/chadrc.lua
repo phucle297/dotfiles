@@ -7,6 +7,11 @@ local M = {}
 
 M.base46 = {
   theme = "doomchad",
+  hl_override = {
+    TelescopeResultsTitle = {
+      bg = "#FFCC66",
+    },
+  },
 }
 M.ui = {
   cmp = {

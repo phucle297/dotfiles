@@ -42,3 +42,16 @@ vim.keymap.set({ "n", "x", "o" }, "gA", 'V<cmd>lua require("leap.treesitter").se
 
 -- toggle nvimtree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree", nowait = true })
+
+--- Tiny diagnostic float
+map("n", "gj", function()
+  vim.diagnostic.open_float()
+end, { desc = "Open diagnostic float" })
+
+-- Leap
+-- Unbind `s` and `S` to restore default behavior
+vim.keymap.set({ "n", "x", "o" }, "s", "<Nop>", { desc = "Disable override of s" })
+vim.keymap.set({ "n", "x", "o" }, "S", "<Nop>", { desc = "Disable override of S" })
+vim.keymap.set({ "n", "x", "o" }, "t", function()
+  require("leap").leap { target_windows = { vim.fn.win_getid() } }
+end, { desc = "Leap" })

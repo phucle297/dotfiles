@@ -215,36 +215,6 @@ local git = {
     },
   },
 }
-local noice = {
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("noice").setup {
-        cmdline = {
-          view = "cmdline_popup", -- Floating command-line
-        },
-        popupmenu = {
-          backend = "cmp", -- Optional integration with nvim-cmp
-        },
-        -- Enable Wilder only for specific use cases
-        filter_options = function()
-          if vim.fn.mode() == ":" then
-            -- Prefer Wilder for command-line suggestions
-            vim.cmd "WilderEnable"
-          else
-            -- Use Noice for other modes
-            vim.cmd "NoiceEnable"
-          end
-        end,
-      }
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-  },
-}
 local wilder = {
   {
     "gelguy/wilder.nvim",
@@ -320,7 +290,32 @@ local hlchunk = {
     end,
   },
 }
-
+local telescope = {
+  {
+    "nvim-telescope/telescope.nvim",
+    lazy = true,
+    opts = {
+      defaults = {
+        border = true,
+        layout_strategy = "horizontal",
+        layout_config = {
+          prompt_position = "top",
+          preview_cutoff = 120,
+          width = 0.95,
+          horizontal = {
+            preview_width = 0.6,
+          },
+        },
+        path_display = { "truncate" },
+        file_ignore_patterns = {},
+        sorting_strategy = "ascending",
+        title = true,
+        results_title = "Results",
+        preview_title = "Preview",
+      },
+    },
+  },
+}
 return mergeObjects(
   ai,
   cmp,
@@ -332,11 +327,11 @@ return mergeObjects(
   logSitter,
   lspConfig,
   lspSaga,
-  noice,
   nvimTree,
   rainbowSmoothCursor,
   smoothScroll,
   tinyInline,
+  telescope,
   tsAutoTag,
   treeSitter,
   ufo,
