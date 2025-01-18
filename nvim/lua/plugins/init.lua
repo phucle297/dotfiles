@@ -316,6 +316,7 @@ local telescope = {
     },
   },
 }
+
 return mergeObjects(
   ai,
   cmp,
