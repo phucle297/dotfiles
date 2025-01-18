@@ -165,6 +165,14 @@ local tsAutoTag = {
   {
     "windwp/nvim-ts-autotag",
     event = "BufRead",
+    config = function()
+      require("nvim-ts-autotag").setup {
+        enable = true, -- Enable auto-tag renaming
+        enable_rename = true, -- Enable automatic renaming of the closing tag
+        enable_close_on_slash = true, -- Auto close on trailing </
+        filetypes = { "html", "xml", "javascript", "typescript", "vue", "tsx", "jsx", "svelte", "hbs" }, -- Supported filetypes
+      }
+    end,
   },
 }
 local smoothScroll = {
