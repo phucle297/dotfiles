@@ -2,9 +2,6 @@
 # VERSION: 3.0
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
-SETUVAR Z_DATA:/Users/phucle/\x2elocal/share/z/data
-SETUVAR Z_DATA_DIR:/Users/phucle/\x2elocal/share/z
-SETUVAR Z_EXCLUDE:\x5e/Users/phucle\x24
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
