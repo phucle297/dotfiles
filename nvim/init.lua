@@ -34,3 +34,11 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argv(0) == "." then
+      require("nvchad.tabufline").close_buffer()
+    end
+  end,
+})

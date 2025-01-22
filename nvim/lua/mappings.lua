@@ -47,6 +47,8 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree", now
 map("n", "gj", function()
   vim.diagnostic.open_float()
 end, { desc = "Open diagnostic float" })
+-- reference
+map("n", "<leader>fr", "<cmd> Lspsaga finder <CR>")
 
 -- Leap
 -- Unbind `s` and `S` to restore default behavior
