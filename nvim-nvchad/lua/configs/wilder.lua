@@ -23,7 +23,7 @@ return function()
       },
     },
     right = {
-      " ",
+      -- " ",
       wilder.popupmenu_scrollbar(),
     },
   })
