@@ -47,13 +47,6 @@ return {
     event = "BufRead",
   },
 
-  -- -- Surround
-  -- {
-  --   "kylechui/nvim-surround",
-  --   event = "VeryLazy",
-  --   config = true,
-  -- },
-
   -- Comments
   {
     "numToStr/Comment.nvim",

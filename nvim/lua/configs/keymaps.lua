@@ -1,5 +1,6 @@
 -- File: ~/.config/nvim/lua/config/keymaps.lua
 local map = vim.keymap.set
+local nomap = vim.keymap.del
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -43,7 +44,7 @@ map("n", "gj", function()
   vim.diagnostic.open_float()
 end, { desc = "Open diagnostic float" })
 -- Reference
-map("n", "<leader>fr", "<cmd> Lspsaga finder <CR>")
+map("n", "<leader>fr", "<cmd>Lspsaga finder<CR>")
 
 -- Leap
 -- Unbind `s` and `S` to restore default behavior
@@ -79,9 +80,6 @@ vim.api.nvim_set_keymap("n", "<C-c>", 'ggVGy', { silent = true })
 
 -- Logsitter
 map("n", "<leader>lg", "<cmd>:lua require('logsitter').log()<CR>", { desc = "Log Sitter", nowait = true })
-
--- Telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
 
 -- Close buffer
 map("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close buffer" })
