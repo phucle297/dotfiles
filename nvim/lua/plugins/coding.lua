@@ -47,13 +47,6 @@ return {
     event = "BufRead",
   },
 
-  -- Comments
-  {
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
-
   -- Logsitter
   {
     "gaelph/logsitter.nvim",

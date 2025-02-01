@@ -87,6 +87,10 @@ nvimtreeOpts = {
   },
 
   on_attach = on_attach,
+
+  update_focused_file = {
+    enable = true,
+  },
 }
 
 return {
