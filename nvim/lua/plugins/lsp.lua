@@ -19,27 +19,26 @@ return {
       require("mason").setup()
       require("mason-lspconfig").setup {
         ensure_installed = {
-          "lua_ls",
-          "html",
-          "cssls",
-          "tailwindcss",
-          "svelte",
-          "prismals",
           "css_variables",
-          "eslint",
-          "ts_ls",
+          "cssls",
+          "docker_compose_language_service",
           "dockerls",
           "dotls",
+          "eslint",
           "graphql",
+          "html",
           "jsonls",
+          "lua_ls",
+          "prismals",
+          "svelte",
+          "stylelint_lsp",
+          "tailwindcss",
+          "terraformls",
+          "textlsp",
+          "ts_ls",
+          "vale_ls",
           "vimls",
           "yamlls",
-          "textlsp",
-          "stylelint_lsp",
-          "docker_compose_language_service",
-          "terraformls",
-          "tailwindcss",
-          "vale_ls",
         },
         automatic_installation = true,
       }
@@ -68,6 +67,22 @@ return {
 
       -- Configure LSP servers
       local servers = {
+        ts_ls = {
+          filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -83,32 +98,31 @@ return {
             },
           },
         },
-        yaml = {
-          keyOrdering = false,
-          schemas = {
-            kubernetes = "k8s-*.yaml",
-            ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/manifest/**/*.yaml",
+        yamlls = {
+          settings = { -- Wrap these settings properly
+            yaml = {   -- Add this nesting level
+              keyOrdering = false,
+              schemas = {
+                kubernetes = "k8s-*.yaml",
+                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] =
+                "/manifest/**/*.yaml",
+              },
+            },
           },
         },
         eslint = {
-          on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              command = "EslintFixAll",
-            })
-          end,
+          -- Move the on_attach to the setup call instead
+          settings = {}, -- Add empty settings if needed
         },
         stylelint_lsp = {
-
-          filetypes = { "css", "scss", "less" },
           settings = {
             stylelintplus = {
               autoFixOnSave = true,
             },
           },
+          filetypes = { "css", "scss", "less" },
         },
         cssls = {
-          filetypes = { "css", "scss", "less" },
           settings = {
             css = {
               validate = true,
@@ -123,14 +137,42 @@ return {
               },
             },
           },
+          filetypes = { "css", "scss", "less" },
         },
+        css_variables = {},
+        docker_compose_language_service = {},
+        dockerls = {},
+        dotls = {},
+        graphql = {},
+        html = {},
+        jsonls = {},
+        prismals = {},
+        svelte = {},
+        tailwindcss = {},
+        terraformls = {},
+        vale_ls = {},
+        vimls = {},
       }
 
-      for server, settings in pairs(servers) do
-        lspconfig[server].setup {
+      -- Separate on_attach function
+      local on_attach = function(client, bufnr)
+        -- Any on_attach functionality
+        if client.name == "eslint" then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end
+      end
+
+      -- Setup servers
+      for server, config in pairs(servers) do
+        lspconfig[server].setup({
           capabilities = capabilities,
-          settings = settings,
-        }
+          settings = config.settings,
+          filetypes = config.filetypes,
+          on_attach = on_attach,
+        })
       end
     end,
   },
@@ -172,7 +214,7 @@ return {
     event = "LspAttach",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons", -- optional
+      "nvim-tree/nvim-web-devicons",     -- optional
     },
     config = function()
       require("lspsaga").setup {
