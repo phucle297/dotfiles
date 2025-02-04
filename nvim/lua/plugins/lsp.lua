@@ -100,12 +100,11 @@ return {
         },
         yamlls = {
           settings = { -- Wrap these settings properly
-            yaml = {   -- Add this nesting level
+            yaml = { -- Add this nesting level
               keyOrdering = false,
               schemas = {
                 kubernetes = "k8s-*.yaml",
-                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] =
-                "/manifest/**/*.yaml",
+                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/manifest/**/*.yaml",
               },
             },
           },
@@ -167,12 +166,12 @@ return {
 
       -- Setup servers
       for server, config in pairs(servers) do
-        lspconfig[server].setup({
+        lspconfig[server].setup {
           capabilities = capabilities,
           settings = config.settings,
           filetypes = config.filetypes,
           on_attach = on_attach,
-        })
+        }
       end
     end,
   },
@@ -185,17 +184,17 @@ return {
       require("conform").setup {
         formatters_by_ft = {
           lua = { "stylua" },
-          javascript = { { "prettierd", "prettier" } },
-          typescript = { { "prettierd", "prettier" } },
-          javascriptreact = { { "prettierd", "prettier" } },
-          typescriptreact = { { "prettierd", "prettier" } },
-          svelte = { { "prettierd", "prettier" } },
-          css = { { "prettierd", "prettier" } },
-          html = { { "prettierd", "prettier" } },
-          json = { { "prettierd", "prettier" } },
-          yaml = { { "prettierd", "prettier" } },
-          markdown = { { "prettierd", "prettier" } },
-          graphql = { { "prettierd", "prettier" } },
+          javascript = { "prettierd", "prettier" },
+          typescript = { "prettierd", "prettier" },
+          javascriptreact = { "prettierd", "prettier" },
+          typescriptreact = { "prettierd", "prettier" },
+          svelte = { "prettierd", "prettier" },
+          css = { "prettierd", "prettier" },
+          html = { "prettierd", "prettier" },
+          json = { "prettierd", "prettier" },
+          yaml = { "prettierd", "prettier" },
+          markdown = { "prettierd", "prettier" },
+          graphql = { "prettierd", "prettier" },
           java = { "google-java-format" },
           kotlin = { "ktlint" },
           scss = { "prettierd", "prettier" },
@@ -204,6 +203,7 @@ return {
         format_on_save = {
           timeout_ms = 500,
           lsp_fallback = true,
+          stop_after_first = true,
         },
       }
     end,
@@ -214,7 +214,7 @@ return {
     event = "LspAttach",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons",     -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
     },
     config = function()
       require("lspsaga").setup {
