@@ -1,33 +1,34 @@
-return {
-  {
-    'akinsho/toggleterm.nvim',
-    version = "*",
-    lazy = false,
-    config = function()
-      require('toggleterm').setup {
-        size = 20,
-        open_mapping = [[<c-\>]],
-        hide_numbers = true, -- hide the number column in toggleterm buffers
-        shade_filetypes = {},
-        shade_terminals = true,
-        shading_factor = '1',   -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-        start_in_insert = true,
-        insert_mappings = true, -- whether or not the open mapping applies in insert mode
-        persist_size = true,
-        direction = 'horizontal',
-        close_on_exit = true, -- close the terminal window when the process exits
-        shell = vim.o.shell,  -- change the default shell
-        float_opts = {
-          border = 'single',
-          width = 200,
-          height = 50,
-          winblend = 3,
-          highlights = {
-            border = "Normal",
-            background = "Normal",
-          }
+return
+{
+  'akinsho/toggleterm.nvim',
+  version = "*",
+  lazy = false,
+  config = function()
+    require('toggleterm').setup {
+      size = 20,
+      open_mapping = [[<c-\>]],
+      hide_numbers = true,
+      shade_filetypes = {},
+      shade_terminals = true,
+      shading_factor = 1,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      direction = 'horizontal',
+      close_on_exit = true,
+      shell = vim.o.shell,
+      float_opts = {
+        border = 'single',
+        width = function() return math.floor(vim.o.columns * 0.8) end,   -- 80% of the screen width
+        height = function() return math.floor(vim.o.lines * 0.6) end,    -- 60% of the screen height
+        -- width = 200,
+        -- height = 50,
+        winblend = 3,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
         }
       }
-    end
-  }
+    }
+  end
 }
