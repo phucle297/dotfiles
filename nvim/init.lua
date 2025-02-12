@@ -16,11 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Load core modules
-require "configs.options"
-require "configs.keymaps"
-require "configs.autocmds"
-
 -- Setup lazy.nvim
 if not vim.uv.fs_stat(lazypath) then
   local repo = "https://github.com/folke/lazy.nvim.git"
@@ -34,3 +29,8 @@ local lazy_config = require "configs.lazy"
 require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
+
+-- Load core modules
+require "configs.options"
+require "configs.keymaps"
+require "configs.autocmds"
