@@ -1,4 +1,5 @@
 return {
+
   {
     "github/copilot.vim",
     event = "VeryLazy",
@@ -24,7 +25,23 @@ return {
             adapter = "copilot",
           },
         },
+        -- adapters = {
+        -- anthropic = function()
+        --   return require("codecompanion.adapters").extend("anthropic", {
+        --     env = {
+        --       api_key = anthApiKey,
+        --     },
+        --   })
+        -- end,
+        -- },
       }
+      -- Keymap for copying text in chat buffer instead of close it
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "codecompanion",
+        callback = function()
+          vim.keymap.set("n", "<C-c>", '"+y', { buffer = true, desc = "Copy text in chat" })
+        end,
+      })
     end,
   },
 }

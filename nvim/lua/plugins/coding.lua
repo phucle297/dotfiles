@@ -77,4 +77,11 @@ return {
       require("leap").add_default_mappings()
     end,
   },
+  {
+    "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 }
