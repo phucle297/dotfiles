@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { silent = true })
 
 -- Copy All
-vim.api.nvim_set_keymap("n", "<C-c>", 'ggVGy', { silent = true })
+vim.api.nvim_set_keymap("n", "<C-c>", "ggVGy", { silent = true })
 
 -- Logsitter
 map("n", "<leader>lg", "<cmd>:lua require('logsitter').log()<CR>", { desc = "Log Sitter", nowait = true })

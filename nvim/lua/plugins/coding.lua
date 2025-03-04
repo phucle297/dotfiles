@@ -1,80 +1,32 @@
 return {
-  -- Treesitter
   {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
-    build = ":TSUpdate",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "windwp/nvim-ts-autotag",
+    "ggandor/leap.nvim",
+    enabled = true,
+    keys = {
+      { "t", mode = { "n", "x", "o" }, desc = "Leap Forward to" },
+      { "T", mode = { "n", "x", "o" }, desc = "Leap Backward to" },
+      { "gt", mode = { "n", "x", "o" }, desc = "Leap from Windows" },
     },
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = {
-          "bash",
-          "c",
-          "html",
-          "javascript",
-          "json",
-          "lua",
-          "luap",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "query",
-          "regex",
-          "tsx",
-          "typescript",
-          "vim",
-          "yaml",
-          "rust",
-        },
-        highlight = { enable = true },
-        indent = { enable = true },
-        autotag = { enable = true },
-      }
+    config = function(_, opts)
+      local leap = require("leap")
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
     end,
   },
-
-  -- Auto pairs
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-  },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "BufRead",
-  },
-
-  -- Logsitter
   {
     "gaelph/logsitter.nvim",
     event = "BufEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("logsitter").setup {
+      require("logsitter").setup({
         path_format = "default",
         prefix = "🚀",
         separator = "->",
-      }
-    end,
-  },
-
-  -- Searching
-  {
-    "kevinhwang91/nvim-hlslens",
-    event = "BufRead",
-    opts = {
-      calm_down = true,
-      nearest_only = true,
-    },
-  },
-  {
-    "ggandor/leap.nvim",
-    event = "BufRead",
-    config = function()
-      require("leap").add_default_mappings()
+      })
     end,
   },
   {
@@ -83,5 +35,14 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufRead",
   },
 }
