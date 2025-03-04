@@ -314,5 +314,116 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  }
+  },
+  {
+    "goolord/alpha-nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local alpha = require("alpha")
+      local dashboard = require("alpha.themes.dashboard")
+
+      -- Custom header with proper centering
+      local header = {
+        type = "text",
+        val = {
+          "██████╗ ███████╗██████╗ ███╗   ███╗███████╗███████╗███████╗",
+          "██╔══██╗██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝██╔════╝",
+          "██████╔╝█████╗  ██████╔╝██╔████╔██║█████╗  █████╗  ███████╗",
+          "██╔═══╝ ██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ██╔══╝  ╚════██║",
+          "██║     ███████╗██║  ██║██║ ╚═╝ ██║███████╗███████╗███████║",
+          "╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝",
+        },
+        opts = {
+          position = "center",
+          hl = "Statement",
+        },
+      }
+
+      -- Ensure icons are properly displayed
+      local function button(sc, txt, keybind, keybind_opts)
+        local opts = {
+          position = "center",
+          shortcut = sc,
+          cursor = 5,
+          width = 50,
+          align_shortcut = "right",
+          hl_shortcut = "Keyword",
+        }
+        if keybind then
+          keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
+          opts.keymap = { "n", sc, keybind, keybind_opts }
+        end
+        return {
+          type = "button",
+          val = txt,
+          on_press = function()
+            local key = vim.api.nvim_replace_termcodes(keybind or sc, true, false, true)
+            vim.api.nvim_feedkeys(key, "normal", false)
+          end,
+          opts = opts,
+        }
+      end
+
+      -- Custom buttons with proper icons
+      local buttons = {
+        type = "group",
+        val = {
+          button("ff", "Find File", ":Telescope find_files<CR>"),
+          button("fo", "Recent Files", ":Telescope oldfiles<CR>"),
+          button("fw", "Find Word", ":Telescope live_grep<CR>"),
+          button("ma", "Bookmarks", ":Telescope marks<CR>"),
+          button("th", "Themes", ":Telescope themes<CR>"),
+          button("q", "Quit", ":qa<CR>"),
+        },
+        opts = {
+          spacing = 1,
+          position = "center",
+        },
+      }
+
+      -- Set up the config
+      dashboard.section.header = header
+      dashboard.section.buttons = buttons
+
+      -- Footer with startup time
+      dashboard.section.footer = {
+        type = "text",
+        val = function()
+          return "Neovim loaded in " .. require("lazy").stats().startuptime .. " ms"
+        end,
+        opts = {
+          position = "center",
+          hl = "Comment",
+        },
+      }
+
+      -- Improve layout with better padding
+      dashboard.config.layout = {
+        { type = "padding", val = math.floor(vim.o.lines * 0.2) },
+        dashboard.section.header,
+        { type = "padding", val = 3 },
+        dashboard.section.buttons,
+        { type = "padding", val = 2 },
+        dashboard.section.footer,
+      }
+
+      -- Ensure proper centering
+      dashboard.config.opts.noautocmd = true
+      vim.opt.number = false
+      vim.opt.relativenumber = false
+
+      alpha.setup(dashboard.config)
+
+      -- Restore line numbers when Alpha is closed
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "AlphaClosed",
+        callback = function()
+          vim.opt.number = true
+          vim.opt.relativenumber = true
+        end,
+      })
+    end,
+  },
 }

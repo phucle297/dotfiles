@@ -13,7 +13,7 @@ opt.splitright = true
 opt.termguicolors = true
 opt.scrolloff = 8
 opt.sidescrolloff = 8
-
+--
 -- Indentation
 opt.expandtab = true
 opt.shiftwidth = 2
@@ -32,6 +32,7 @@ opt.backup = false
 opt.swapfile = false
 opt.undofile = true
 opt.undodir = vim.fn.stdpath "data" .. "/undodir"
+vim.opt.modifiable = true
 opt.fileencoding = "utf-8"
 
 -- Performance

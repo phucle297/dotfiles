@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -10,17 +9,9 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   }
 end
-vim.opt.rtp:prepend(lazypath)
 
--- Set leader key before lazy
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Setup lazy.nvim
-if not vim.uv.fs_stat(lazypath) then
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
-end
 
 vim.opt.rtp:prepend(lazypath)
 
@@ -31,6 +22,8 @@ require("lazy").setup({
 }, lazy_config)
 
 -- Load core modules
-require "configs.options"
-require "configs.keymaps"
-require "configs.autocmds"
+vim.schedule(function()
+  require "configs.options"
+  require "configs.keymaps"
+  require "configs.autocmds"
+end)
