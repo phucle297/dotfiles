@@ -25,3 +25,4 @@ require("lazy").setup({
 }, lazy_config)
 
 require "configs.keymaps"
+require "configs.options-after-lazy"

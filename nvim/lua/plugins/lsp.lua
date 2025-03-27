@@ -100,11 +100,12 @@ return {
         },
         yamlls = {
           settings = { -- Wrap these settings properly
-            yaml = { -- Add this nesting level
+            yaml = {   -- Add this nesting level
               keyOrdering = false,
               schemas = {
                 kubernetes = "k8s-*.yaml",
-                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/manifest/**/*.yaml",
+                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] =
+                "/manifest/**/*.yaml",
               },
             },
           },
@@ -184,14 +185,14 @@ return {
       require("conform").setup {
         formatters_by_ft = {
           lua = { "stylua" },
-          javascript = { "prettierd", "prettier" },
-          typescript = { "prettierd", "prettier" },
-          javascriptreact = { "prettierd", "prettier" },
-          typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+          javascript = { "biome", "prettierd", "prettier" },
+          typescript = { "biome", "prettierd", "prettier" },
+          javascriptreact = { "biome", "prettierd", "prettier" },
+          typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
           svelte = { "prettierd", "prettier" },
           css = { "prettierd", "prettier" },
           html = { "prettierd", "prettier" },
-          json = { "prettierd", "prettier" },
+          json = { "biome", "prettierd", "prettier" },
           yaml = { "prettierd", "prettier" },
           markdown = { "prettierd", "vale", "prettier" },
           graphql = { "prettierd", "prettier" },
@@ -213,7 +214,7 @@ return {
     event = "LspAttach",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons", -- optional
+      "nvim-tree/nvim-web-devicons",     -- optional
     },
     config = function()
       require("lspsaga").setup {

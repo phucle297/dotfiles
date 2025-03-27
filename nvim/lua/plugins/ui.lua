@@ -107,10 +107,10 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>",                desc = "Find Files" },
-      { "<leader>fg", "<cmd>Telescope oldfiles<cr>",                  desc = "Recent Files" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
-      { "<leader>fw", "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
+      { "<leader>ff", "<cmd>Telescope find_files cwd_only=true<cr>",  desc = "Find Files" },
+      { "<leader>fo", "<cmd>Telescope oldfiles cwd_only=true<cr>",    desc = "Old Files" },
+      { "<leader>fb", "<cmd>Telescope buffers cwd_only=true<cr>",     desc = "Buffers" },
+      { "<leader>fw", "<cmd>Telescope live_grep cwd_only=true<cr>",   desc = "Live Grep" },
       { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search in Buffer" },
     },
     opts = {
