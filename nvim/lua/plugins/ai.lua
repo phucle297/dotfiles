@@ -1,8 +1,20 @@
 return {
-
+  -- Copilot
   {
-    "github/copilot.vim",
-    event = "VeryLazy",
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<Tab>"
+          }
+        }
+      })
+    end,
   },
   {
     "olimorris/codecompanion.nvim",
@@ -10,7 +22,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp",                                                                    -- Optional: For using slash commands and variables in the chat buffer
+      "saghen/blink.cmp",                                                                    -- Optional: For using slash commands and variables in the chat buffer
       "nvim-telescope/telescope.nvim",                                                       -- Optional: For using slash commands
       { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
       { "stevearc/dressing.nvim",                    opts = {} },                            -- Optional: Improves `vim.ui.select`

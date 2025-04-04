@@ -8,11 +8,11 @@ return {
       "mason-lspconfig.nvim",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
       { "j-hui/fidget.nvim", tag = "legacy", config = true },
     },
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
       local lspconfig = require "lspconfig"
 
       -- Setup mason-lspconfig
@@ -26,6 +26,7 @@ return {
           "dotls",
           "eslint",
           "graphql",
+          "biome",
           "html",
           "jsonls",
           "lua_ls",
@@ -67,6 +68,23 @@ return {
 
       -- Configure LSP servers
       local servers = {
+        biome = {
+          filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+        },
+        tailwindcss = {
+          filetypes = { "html", "css", "javascriptreact", "typescriptreact", "svelte" },
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  "clsx\\(([^)]*)\\)",       -- Supports clsx utility
+                  "classnames\\(([^)]*)\\)", -- Supports classnames utility
+                  '"([^"]*)"',               -- Generic class string matching
+                },
+              },
+            },
+          },
+        },
         ts_ls = {
           filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
           settings = {
