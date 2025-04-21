@@ -29,4 +29,22 @@ return {
       })
     end,
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        use_libuv_file_watcher = true,
+        follow_current_file = true,
+        hijack_netrw_behavior = "open_current",
+      },
+      window = {
+        mappings = {
+          -- remove default copy
+          ["c"] = "copy_to_clipboard",
+          ["x"] = "cut_to_clipboard",
+          ["p"] = "paste_from_clipboard",
+        },
+      },
+    },
+  },
 }

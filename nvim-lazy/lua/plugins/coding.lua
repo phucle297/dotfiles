@@ -42,7 +42,48 @@ return {
     config = true,
   },
   {
-    "windwp/nvim-ts-autotag",
-    event = "BufRead",
+    "poljar/typos.nvim",
+    config = function()
+      require("typos").setup()
+    end,
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      local h = require("null-ls.helpers")
+
+      local typos = h.make_builtin({
+        name = "typos",
+        meta = {
+          url = "https://github.com/crate-ci/typos",
+          description = "A fast, feature-rich typo checker.",
+        },
+        method = null_ls.methods.DIAGNOSTICS,
+        filetypes = { "markdown", "text", "lua", "python", "typescript", "javascript" },
+        generator_opts = {
+          command = "typos",
+          args = { "$FILENAME" },
+          to_stdin = false,
+          from_stderr = false,
+          format = "line",
+          on_output = function(line)
+            local _, _, row, col, message = line:find("([^:]+):(%d+):(%d+):%s+(.+)")
+            if row and col and message then
+              return {
+                row = tonumber(row),
+                col = tonumber(col),
+                message = message,
+                severity = 2,
+                source = "typos",
+              }
+            end
+          end,
+        },
+        factory = h.generator_factory,
+      })
+
+      table.insert(opts.sources, typos)
+    end,
   },
 }
