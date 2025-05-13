@@ -86,3 +86,6 @@ map("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close buffer" })
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle terminal horizontal" })
 map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle terminal vertical" })
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Toggle terminal float" })
+
+map("i", "jk", "<ESC>")
+map("i", "kj", "<ESC>")

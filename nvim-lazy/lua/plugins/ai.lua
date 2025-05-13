@@ -1,5 +1,5 @@
 return {
-  -- -- Copilot
+  -- Copilot
   -- {
   --   "zbirenbaum/copilot.lua",
   --   cmd = "Copilot",

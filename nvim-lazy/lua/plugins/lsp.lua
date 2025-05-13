@@ -36,7 +36,8 @@ return {
           "tailwindcss",
           "terraformls",
           "textlsp",
-          "ts_ls",
+          -- "ts_ls",
+          "vtsls",
           "vale_ls",
           "vimls",
           "yamlls",
@@ -85,18 +86,46 @@ return {
             },
           },
         },
-        ts_ls = {
+        -- ts_ls = {
+        --   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+        --   settings = {
+        --     typescript = {
+        --       inlayHints = {
+        --         includeInlayParameterNameHints = "all",
+        --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        --         includeInlayFunctionParameterTypeHints = true,
+        --         includeInlayVariableTypeHints = true,
+        --         includeInlayPropertyDeclarationTypeHints = true,
+        --         includeInlayFunctionLikeReturnTypeHints = true,
+        --         includeInlayEnumMemberValueHints = true,
+        --       },
+        --     },
+        --   },
+        -- },
+        vtsls = {
           filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
           settings = {
             typescript = {
               inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
+                parameterNames = {
+                  enabled = "all", -- corresponds to includeInlayParameterNameHints
+                  suppressWhenArgumentMatchesName = false, -- corresponds to includeInlayParameterNameHintsWhenArgumentMatchesName
+                },
+                parameterTypes = {
+                  enabled = true, -- corresponds to includeInlayFunctionParameterTypeHints
+                },
+                variableTypes = {
+                  enabled = true, -- corresponds to includeInlayVariableTypeHints
+                },
+                propertyDeclarationTypes = {
+                  enabled = true, -- corresponds to includeInlayPropertyDeclarationTypeHints
+                },
+                functionLikeReturnTypes = {
+                  enabled = true, -- corresponds to includeInlayFunctionLikeReturnTypeHints
+                },
+                enumMemberValues = {
+                  enabled = true, -- corresponds to includeInlayEnumMemberValueHints
+                },
               },
             },
           },
