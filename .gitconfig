@@ -1,0 +1,9 @@
+[user]
+	name = Le Dam Duy Phuc
+	mail = dppermees@gmail.com
+	email = dppermees@gmail.com
+[core]
+	editor = nvim
+[ghq]
+  vcs = git
+  root = ~/pj

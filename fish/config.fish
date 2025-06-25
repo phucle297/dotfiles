@@ -27,3 +27,9 @@ set -U fish_pager_color_prefix e5c07b # yellow - for prefix matches
 set -U fish_pager_color_completion normal
 set -U fish_pager_color_description 5c6370
 set -U fish_pager_color_selected_background --background=282c34
+
+export PATH="$HOME/.local/share/uv/tools/vectorcode/bin:$PATH"
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
