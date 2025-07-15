@@ -1,0 +1,31 @@
+(defcfg
+  input (device-file "/dev/input/by-id/usb-Li_Guo_LG_87_00000000-event-kbd")
+output (uinput-sink "Permees Kmonad Uinput")
+ 
+  fallthrough true
+)
+(defsrc
+  caps   a    s    d    f    g    h    j    k    l    ;
+  spc
+)
+(defalias
+    esc_ctrl (tap-hold-next-release 200 esc lctrl)
+    met_a (tap-hold-next-release 200 a lmet)
+    alt_s (tap-hold-next-release 200 s lalt)
+    sft_d (tap-hold-next-release 200 d lsft)
+    ctl_f (tap-hold-next-release 200 f lctl)
+    spc (tap-hold 300 spc (layer-toggle space))
+    ctl_j (tap-hold-next-release 200 j rctl)
+    sft_k (tap-hold-next-release 200 k rsft)
+    alt_l (tap-hold-next-release 200 l lalt)
+    met_; (tap-hold-next-release 200 ; rmet)
+)
+(deflayer homerowmods
+    @esc_ctrl  @met_a   @alt_s   @sft_d   @ctl_f   g   h   @ctl_j   @sft_k   @alt_l   @met_;
+    @spc
+)
+ 
+(deflayer space
+    @esc_ctrl  @met_a   @alt_s   @sft_d   @ctl_f   g   left   down   up   rght   ;
+    spc
+)
