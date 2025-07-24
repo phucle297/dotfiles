@@ -22,19 +22,19 @@ return {
       disabled_buftypes = {},
     },
   },
-  {
-    "folke/noice.nvim",
-    opts = function(_, opts)
-      table.insert(opts.routes, {
-        filter = {
-          event = "notify",
-          find = "No information available",
-        },
-        opts = { skip = true },
-      })
-      opts.presets.lsp_doc_border = true
-    end,
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   opts = function(_, opts)
+  --     table.insert(opts.routes, {
+  --       filter = {
+  --         event = "notify",
+  --         find = "No information available",
+  --       },
+  --       opts = { skip = true },
+  --     })
+  --     opts.presets.lsp_doc_border = true
+  --   end,
+  -- },
   {
     "akinsho/bufferline.nvim",
     keys = {
