@@ -14,8 +14,25 @@
   networking.networkmanager.enable = true;
 
   # Time zone and locale
-  time.timeZone = "Asia/Ho_Chi_Minh";  # Adjust for Vietnam, change if needed
-  i18n.defaultLocale = "en_US.UTF-8";
+  time.timeZone = "Asia/Ho_Chi_Minh";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "vi_VN";
+      LC_IDENTIFICATION = "vi_VN";
+      LC_MEASUREMENT = "vi_VN";
+      LC_MONETARY = "vi_VN";
+      LC_NAME = "vi_VN";
+      LC_NUMERIC = "vi_VN";
+      LC_PAPER = "vi_VN";
+      LC_TELEPHONE = "vi_VN";
+      LC_TIME = "vi_VN";
+    };
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "vi_VN/UTF-8"
+    ];
+  };
 
   # Desktop Environment - Keep GNOME but allow Hyprland
   services.xserver.enable = true;
@@ -26,15 +43,29 @@
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # Let Hyprland manage its own portal
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   };
 
-  # XDG portal for screen sharing, etc.
+  # XDG portal - FIXED configuration to avoid conflicts
   xdg.portal = {
     enable = true;
+    wlr.enable = false; # Disable wlr portal to avoid conflicts
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
     ];
+    # Configure which portal to use for which desktop
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+      };
+      gnome = {
+        default = [ "gnome" "gtk" ];
+      };
+    };
   };
 
   # Audio
@@ -82,18 +113,13 @@
     kitty
   ];
 
-  # Fonts (UPDATED - new nerd-fonts syntax)
+  # Fonts (minimal version to avoid issues)
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
-    fira-code-symbols
-    # New nerd-fonts syntax
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.caskaydia-cove  # This is CascadiaCode
   ];
 
   # Enable flakes
