@@ -16,14 +16,14 @@
 	time.timeZone = "Asia/Ho_Chi_Minh";
 	i18n.defaultLocale = "en_US.UTF-8";
 	i18n.inputMethod = {
-	  enable = true;
-	  type = "fcitx5";
-	  fcitx5.addons = with pkgs; [
-	    fcitx5-gtk
-	    fcitx5-configtool
-	    kdePackages.fcitx5-qt
-	    kdePackages.fcitx5-unikey
-	  ];
+	 enable = true;
+	 type = "fcitx5";
+	 fcitx5.addons = with pkgs; [
+	   fcitx5-gtk
+	   fcitx5-configtool
+	   kdePackages.fcitx5-qt
+	   kdePackages.fcitx5-unikey
+	 ];
 	};
 
 	#User
@@ -52,7 +52,7 @@
 		brightnessctl light
 		tlp powertop acpid
 		pipewire wireplumber alsa-utils pavucontrol pulseaudio
-		blueman bluez libsForQt5.bluez-qt
+		blueman bluez kdePackages.bluez-qt
 		fzf
 		rofi-wayland waybar swww swaylock 
 		teams-for-linux
@@ -64,6 +64,13 @@
 		swaynotificationcenter
 		flameshot
 		playerctl
+		hyprlock
+		zip
+		unzip
+		ripgrep
+		tree
+		which
+		# kdePackages.sddm sddm-astronaut kdePackages.qtbase kdePackages.qtmultimedia 
 	];
 
 	#Services
@@ -103,15 +110,29 @@
 		jetbrains-mono
 		nerd-fonts.jetbrains-mono
 	];
-
-	#Keyboard
-	services.xserver.xkb = {
-	  layout = "us";
-	  variant = "";
-	};
-	# Keymap
-	console.keyMap = "us";
-
+	# services.displayManager = {
+	# 	defaultSession = "hyprland";
+	# 	sddm = {
+	# 	 package = pkgs.kdePackages.sddm;
+	# 	 enable = true;
+	# 	 wayland.enable = true;
+	# 	 extraPackages = with pkgs; [
+	# 		sddm-astronaut
+	# 		kdePackages.qtbase
+	# 		kdePackages.qtwayland
+	# 		kdePackages.qtmultimedia
+	# 		kdePackages.qtdeclarative
+	# 		kdePackages.qtsvg
+	# 		kdePackages.qt5compat
+	# 	];
+	# 	theme = "sddm-astronaut-theme";
+	# 	settings = {
+	# 	     Theme = {
+	# 		Current = "sddm-astronaut-theme";
+	# 		};
+	# 	};
+	# };
+	# services.xserver.enable = true;
 	
 	#Enable flake + nix-command
 	nix.settings = {
