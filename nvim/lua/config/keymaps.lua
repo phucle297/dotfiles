@@ -34,3 +34,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     map("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
   end,
 })
+
+map("x", "p", '"_dP', { noremap = true, silent = true, desc = "Paste without overwriting yank" })
+map("x", "P", '"_dP', { noremap = true, silent = true, desc = "Paste without overwriting yank" })

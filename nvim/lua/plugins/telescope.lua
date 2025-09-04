@@ -17,7 +17,7 @@ return {
       },
       { "<leader>fF", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
       { "<leader>ff", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
-      { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>fo", LazyVim.pick("oldfiles"), desc = "Recent" },
       { "<leader>fw", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
       { "<leader>fW", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
       { "<leader>uC", LazyVim.pick("colorscheme", { enable_preview = true }), desc = "Colorscheme with Preview" },
