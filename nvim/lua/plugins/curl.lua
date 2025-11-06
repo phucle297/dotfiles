@@ -37,13 +37,6 @@ return {
         end,
         desc = "Pick scoped collection",
       },
-      {
-        "<leader>fgc",
-        function()
-          require("curl").pick_global_collection()
-        end,
-        desc = "Pick global collection",
-      },
     },
     dependencies = { "nvim-lua/plenary.nvim" },
     config = true,
