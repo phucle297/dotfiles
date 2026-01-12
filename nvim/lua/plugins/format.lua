@@ -2,6 +2,14 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
+      format_on_save = function(bufnr)
+        -- Always try to format, but never block save
+        return {
+          timeout_ms = 1000,
+          lsp_fallback = false,
+          quiet = true, -- <-- IMPORTANT
+        }
+      end,
       formatters_by_ft = {
         lua = { "stylua" },
         svelte = { "prettierd", "prettier" },
@@ -26,6 +34,7 @@ return {
         scss = { "prettierd", "prettier" },
         fish = { "fish_indent" },
         sql = { "sleek" },
+        python = { "isort", "black" },
       },
       formatters = {
         yamlfix = {

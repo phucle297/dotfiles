@@ -9,6 +9,14 @@ return {
         },
       },
       servers = {
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace",
+            typeCheckingMode = "basic",
+          },
+        },
         typos_lsp = {},
         eslint = {
           settings = {
