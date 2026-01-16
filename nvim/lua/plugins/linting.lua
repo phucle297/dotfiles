@@ -1,24 +1,30 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    -- Event to trigger linters
-    events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+    event = "LazyFile",
     opts = {
+      -- Event to trigger linters
+      events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       linters_by_ft = {
-        ["*"] = { "vale" },
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d", "biomejs" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d", "biomejs" },
-        svelte = { "eslint_d" },
-        lua = { "luacheck" },
-        yaml = { "yamllint" },
-        css = { "stylelint" },
-        dockerfile = { "hadolint" },
-        scss = { "stylelint" },
-        sql = { "sqlfluff" },
-        terraform = { "tflint" },
-        markdown = { "markdownlint" },
+        fish = { "fish" },
+        -- Use the "*" filetype to run linters on all filetypes.
+        ["*"] = { "global linter" },
+        -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
+        ["_"] = { "fallback linter" },
+        ["*"] = { "typos" },
+      },
+      -- LazyVim extension to easily override linter options
+      -- or add custom linters.
+      ---@type table<string,table>
+      linters = {
+        -- -- Example of using selene only when a selene.toml file is present
+        -- selene = {
+        --   -- `condition` is another LazyVim extension that allows you to
+        --   -- dynamically enable/disable linters based on the context.
+        --   condition = function(ctx)
+        --     return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+        --   end,
+        -- },
       },
     },
     config = function(_, opts)
@@ -37,15 +43,6 @@ return {
         end
       end
       lint.linters_by_ft = opts.linters_by_ft
-      lint.linters.eslint_d = require("lint.util").wrap(lint.linters.eslint_d, function(diagnostic)
-        -- try to ignore "No ESLint configuration found" error
-        -- if diagnostic.message:find("Error: No ESLint configuration found") then -- old version
-        -- update: 20240814, following is working
-        if diagnostic.message:find("Error: Could not find config file") then
-          return nil
-        end
-        return diagnostic
-      end)
 
       function M.debounce(ms, fn)
         local timer = vim.uv.new_timer()
@@ -98,10 +95,5 @@ return {
         callback = M.debounce(100, M.lint),
       })
     end,
-  },
-  {
-    "dmmulroy/ts-error-translator.nvim",
-    events = { "LspAttach" },
-    opts = {},
   },
 }
