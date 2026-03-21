@@ -1,0 +1,470 @@
+version: 8
+
+groups: []
+
+configSync:
+
+  parts: {}
+
+hotkeys:
+
+  toggle-window:
+
+    - Ctrl-Space
+
+  copy-current-path: []
+
+  ctrl-c:
+
+    - Ctrl-C
+
+  copy:
+
+    - Ctrl-Shift-C
+
+  paste:
+
+    - Ctrl-Shift-V
+
+    - Shift-Insert
+
+  select-all:
+
+    - Ctrl-Shift-A
+
+  clear: []
+
+  zoom-in:
+
+    - Ctrl-=
+
+    - Ctrl-Shift-=
+
+  zoom-out:
+
+    - Ctrl--
+
+    - Ctrl-Shift--
+
+  reset-zoom:
+
+    - Ctrl-0
+
+  home:
+
+    - Home
+
+  end:
+
+    - End
+
+  previous-word:
+
+    - Ctrl-Left
+
+  next-word:
+
+    - Ctrl-Right
+
+  delete-previous-word:
+
+    - Ctrl-Backspace
+
+  delete-line:
+
+    - Ctrl-Shift-Backspace
+
+  delete-next-word:
+
+    - Ctrl-Delete
+
+  search:
+
+    - Ctrl-Shift-F
+
+  pane-focus-all:
+
+    - Ctrl-Shift-I
+
+  focus-all-tabs:
+
+    - Ctrl-Alt-Shift-I
+
+  scroll-to-top:
+
+    - Ctrl-PageUp
+
+  scroll-page-up:
+
+    - Alt-PageUp
+
+  scroll-up:
+
+    - Ctrl-Shift-Up
+
+  scroll-down:
+
+    - Ctrl-Shift-Down
+
+  scroll-page-down:
+
+    - Alt-PageDown
+
+  scroll-to-bottom:
+
+    - Ctrl-PageDown
+
+  restart-telnet-session: []
+
+  restart-ssh-session: []
+
+  launch-winscp: []
+
+  settings-tab: {}
+
+  settings:
+
+    - Ctrl-,
+
+  serial:
+
+    - Alt-K
+
+  restart-serial-session: []
+
+  new-tab:
+
+    - Ctrl-Shift-T
+
+  new-window:
+
+    - Ctrl-Shift-N
+
+  profile: {}
+
+  profile-selectors: {}
+
+  group-selectors: {}
+
+  toggle-fullscreen:
+
+    - F11
+
+    - Alt-Enter
+
+  close-tab:
+
+    - Ctrl-Shift-W
+
+  reopen-tab:
+
+    - Ctrl-Shift-Z
+
+  toggle-last-tab: []
+
+  rename-tab:
+
+    - Ctrl-Shift-R
+
+  next-tab:
+
+    - Ctrl-Shift-Right
+
+    - Ctrl-Tab
+
+  previous-tab:
+
+    - Ctrl-Shift-Left
+
+    - Ctrl-Shift-Tab
+
+  move-tab-left:
+
+    - Ctrl-Shift-PageUp
+
+  move-tab-right:
+
+    - Ctrl-Shift-PageDown
+
+  duplicate-tab: []
+
+  restart-tab: []
+
+  reconnect-tab: []
+
+  disconnect-tab: []
+
+  explode-tab:
+
+    - Ctrl-Shift-.
+
+  combine-tabs:
+
+    - Ctrl-Shift-,
+
+  tab-1:
+
+    - Alt-1
+
+  tab-2:
+
+    - Alt-2
+
+  tab-3:
+
+    - Alt-3
+
+  tab-4:
+
+    - Alt-4
+
+  tab-5:
+
+    - Alt-5
+
+  tab-6:
+
+    - Alt-6
+
+  tab-7:
+
+    - Alt-7
+
+  tab-8:
+
+    - Alt-8
+
+  tab-9:
+
+    - Alt-9
+
+  tab-10:
+
+    - Alt-0
+
+  tab-11: []
+
+  tab-12: []
+
+  tab-13: []
+
+  tab-14: []
+
+  tab-15: []
+
+  tab-16: []
+
+  tab-17: []
+
+  tab-18: []
+
+  tab-19: []
+
+  tab-20: []
+
+  split-right:
+
+    - Ctrl-Shift-S
+
+  split-bottom:
+
+    - Ctrl-Shift-D
+
+  split-left: []
+
+  split-top: []
+
+  pane-nav-right:
+
+    - Ctrl-Alt-Right
+
+    - Ctrl-Alt-L
+
+  pane-nav-down:
+
+    - Ctrl-Alt-Down
+
+    - Ctrl-Alt-J
+
+  pane-nav-up:
+
+    - Ctrl-Alt-Up
+
+    - Ctrl-Alt-K
+
+  pane-nav-left:
+
+    - Ctrl-Alt-Left
+
+    - Ctrl-Alt-H
+
+  pane-nav-previous:
+
+    - Ctrl-Alt-[
+
+  pane-nav-next:
+
+    - Ctrl-Alt-]
+
+  pane-nav-2: []
+
+  pane-nav-3: []
+
+  pane-nav-4: []
+
+  pane-nav-5: []
+
+  pane-nav-6: []
+
+  pane-nav-7: []
+
+  pane-nav-8: []
+
+  pane-nav-9: []
+
+  pane-maximize:
+
+    - Ctrl-Alt-Enter
+
+  close-pane:
+
+    - Ctrl-Q
+
+    - Alt-Q
+
+  pane-increase-vertical: []
+
+  pane-decrease-vertical: []
+
+  pane-increase-horizontal: []
+
+  pane-decrease-horizontal: []
+
+  switch-profile:
+
+    - Ctrl-Alt-T
+
+  profile-selector:
+
+    - Ctrl-Shift-E
+
+  command-selector:
+
+    - Ctrl-Shift-P
+
+  rearrange-panes: []
+
+  pane-nav-1: []
+
+terminal:
+
+  searchOptions: {}
+
+  colorScheme:
+
+    name: Atom
+
+    foreground: '#c5c8c6'
+
+    background: '#161719'
+
+    cursor: '#d0d0d0'
+
+    colors:
+
+      - '#000000'
+
+      - '#fd5ff1'
+
+      - '#87c38a'
+
+      - '#ffd7b1'
+
+      - '#85befd'
+
+      - '#b9b6fc'
+
+      - '#85befd'
+
+      - '#e0e0e0'
+
+      - '#000000'
+
+      - '#fd5ff1'
+
+      - '#94fa36'
+
+      - '#f5ffa8'
+
+      - '#96cbfe'
+
+      - '#b9b6fc'
+
+      - '#85befd'
+
+      - '#e0e0e0'
+
+  font: JetBrainsMono NF
+
+  ligatures: true
+
+  customColorSchemes: []
+
+  pasteOnMiddleClick: true
+
+  profile: local:wsl-Ubuntu
+
+  warnOnMultilinePaste: false
+
+  rightClick: menu
+
+ssh: {}
+
+clickableLinks: {}
+
+accessibility: {}
+
+appearance: {}
+
+hacks: {}
+
+providerBlacklist: []
+
+commandBlacklist: []
+
+enableWelcomeTab: false
+
+pluginBlacklist: []
+
+profileDefaults:
+
+  ssh:
+
+    disableDynamicTitle: true
+
+    type: ssh
+
+  local:
+
+    type: local
+
+    options:
+
+      env:
+
+        wsl: Ubuntu
+
+      cwd: \\wsl.localhost\Ubuntu\home\permees
+
+profileBlacklist:
+
+  - local:wsl
+
+  - local:wsl-archlinux
+
+hideTray: true
+
+profiles: []
+
+recoverTabs: false
+
