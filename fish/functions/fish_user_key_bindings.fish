@@ -4,7 +4,8 @@ function fish_user_key_bindings
     #bind \cf peco_change_directory # Bind for peco change directory to Ctrl+F
     #bind \e\[102\;6u custom_fzf_change_directory
     # Works on fish 4.0.0
-    bind ctrl-shift-f custom_fzf_change_directory
+    #bind ctrl-shift-f custom_fzf_change_directory
+    bind ctrl-f custom_fzf_change_directory
 
     # vim-like
     #bind \cl forward-char
