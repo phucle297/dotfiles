@@ -8,9 +8,7 @@ configSync:
 
 hotkeys:
 
-  toggle-window:
-
-    - Ctrl-Space
+  toggle-window: []
 
   copy-current-path: []
 
@@ -126,9 +124,7 @@ hotkeys:
 
     - Ctrl-,
 
-  serial:
-
-    - Alt-K
+  serial: []
 
   restart-serial-session: []
 
@@ -278,25 +274,25 @@ hotkeys:
 
     - Ctrl-Alt-Right
 
-    - Ctrl-Alt-L
+    - Alt-L
 
   pane-nav-down:
 
     - Ctrl-Alt-Down
 
-    - Ctrl-Alt-J
+    - Alt-J
 
   pane-nav-up:
 
     - Ctrl-Alt-Up
 
-    - Ctrl-Alt-K
+    - Alt-K
 
   pane-nav-left:
 
     - Ctrl-Alt-Left
 
-    - Ctrl-Alt-H
+    - Alt-H
 
   pane-nav-previous:
 
@@ -418,13 +414,17 @@ terminal:
 
   rightClick: menu
 
+  focusFollowsMouse: true
+
 ssh: {}
 
 clickableLinks: {}
 
 accessibility: {}
 
-appearance: {}
+appearance:
+
+  lastTabClosesWindow: true
 
 hacks: {}
 
