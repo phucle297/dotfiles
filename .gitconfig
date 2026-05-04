@@ -1,9 +1,13 @@
-[user]
-	name = Le Dam Duy Phuc
-	mail = dppermees@gmail.com
-	email = dppermees@gmail.com
+[ghq]
+    vcs = git
+    root = /home/permees/Projects
+
+[includeIf "gitdir:~/Projects/github-personal/phucle297/"]
+    path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/Projects/github.com/company/"]
+    path = ~/.gitconfig-work
+[push]
+	autoSetupRemote = true
 [core]
 	editor = nvim
-[ghq]
-  vcs = git
-  root = ~/pj

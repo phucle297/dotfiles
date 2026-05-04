@@ -433,6 +433,14 @@ return {
           wrap = true,
         },
       },
+      file_ignore_patterns = {
+        "node_modules",
+        "dist",
+        "build",
+        ".git",
+        ".next",
+        "lock",
+      },
     },
     config = function(_, opts)
       require("fzf-lua").setup(opts)
