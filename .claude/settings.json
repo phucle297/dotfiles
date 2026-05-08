@@ -1,0 +1,80 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "model": "sonnet",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "~/.claude/scripts/session-start.sh" }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CURRENT=$(bd kv get checkpoint:current 2>/dev/null); [ -n \"$CURRENT\" ] && ~/.claude/scripts/checkpoint-write.sh $CURRENT; mempalace mine ~/.claude/projects --mode convos && mempalace sweep ~/.claude/projects"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/session-end.sh && mempalace mine ~/.claude/projects --mode convos && mempalace sweep ~/.claude/projects"
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "beads@beads-marketplace": true,
+    "atlassian@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "beads-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "gastownhall/beads"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "skillListingBudgetFraction": 0.03,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "editorMode": "normal",
+  "verbose": false,
+  "autoCompactEnabled": false,
+  "teammateMode": "tmux",
+  "useAutoModeDuringPlat": true,
+  "autoCompact": false,
+  "autoApproveTools": ["beads:*", "agent-mail:*", "mempalace:*"],
+  "mcpServers": {
+    "mcp-agent-mail": {
+      "type": "http",
+      "url": "http://127.0.0.1:8765/api/",
+      "headers": {
+        "Authorization": "Bearer 8d4d6622a97c7e5d67d555f24e52e857b178bc817e8c9c9322c429bd1f1566b5"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/home/permees/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-05-08T10:09:19.781Z"
+  },
+  "caveman": {
+    "source": {
+      "source": "github",
+      "repo": "JuliusBrussee/caveman"
+    },
+    "installLocation": "/home/permees/.claude/plugins/marketplaces/caveman",
+    "lastUpdated": "2026-05-08T02:55:42.833Z"
+  },
+  "beads-marketplace": {
+    "source": {
+      "source": "github",
+      "repo": "gastownhall/beads"
+    },
+    "installLocation": "/home/permees/.claude/plugins/marketplaces/beads-marketplace",
+    "lastUpdated": "2026-05-08T03:20:47.151Z"
+  }
+}

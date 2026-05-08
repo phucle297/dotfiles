@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "plugins": {
+    "caveman@caveman": [
+      {
+        "scope": "user",
+        "installPath": "/home/permees/.claude/plugins/cache/caveman/caveman/ef6050c5e184",
+        "version": "ef6050c5e184",
+        "installedAt": "2026-05-08T02:55:49.556Z",
+        "lastUpdated": "2026-05-08T02:55:49.556Z",
+        "gitCommitSha": "ef6050c5e1848b6880ff47c32ade1a608a64f85e"
+      }
+    ],
+    "beads@beads-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/home/permees/.claude/plugins/cache/beads-marketplace/beads/1.0.4",
+        "version": "1.0.4",
+        "installedAt": "2026-05-08T02:56:14.588Z",
+        "lastUpdated": "2026-05-08T02:56:14.588Z",
+        "gitCommitSha": "ce242a87967836a361a8f11f0674335173fdbb27"
+      }
+    ],
+    "atlassian@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/permees/.claude/plugins/cache/claude-plugins-official/atlassian/9b52fb18e184",
+        "version": "9b52fb18e184",
+        "installedAt": "2026-05-08T07:57:25.398Z",
+        "lastUpdated": "2026-05-08T07:57:25.398Z",
+        "gitCommitSha": "9b52fb18e184edc307ce33f8bf4cdf148dedf1f2"
+      }
+    ]
+  }
+}
