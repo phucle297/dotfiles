@@ -1,0 +1,89 @@
+# ~/.config/alacritty/alacritty.toml
+# Windows: %APPDATA%\alacritty\alacritty.toml
+
+[general]
+live_config_reload = true
+
+[terminal]
+shell = { program = "wsl.exe", args = ["~"] }
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 1.0
+dynamic_padding = false
+decorations = "Full"
+startup_mode = "Maximized"
+padding = { x = 8, y = 8 }
+
+[scrolling]
+history = 3000
+multiplier = 3
+
+[font]
+size = 12.5
+builtin_box_drawing = true
+
+[font.normal]
+family = "ComicShannsMono Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "ComicShannsMono Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "ComicShannsMono Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "ComicShannsMono Nerd Font Mono"
+style = "Bold Italic"
+
+[cursor]
+unfocused_hollow = false
+blink_interval = 0
+
+[cursor.style]
+shape = "Beam"
+blinking = "Never"
+
+[selection]
+save_to_clipboard = true
+
+# One Half Dark theme
+
+[colors.primary]
+background = "#282c34"
+foreground = "#dcdfe4"
+
+[colors.cursor]
+text = "#282c34"
+cursor = "#dcdfe4"
+
+[colors.normal]
+black   = "#282c34"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#dcdfe4"
+
+[colors.bright]
+black   = "#5a6374"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#ffffff"
+
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Alt", action = "ReceiveChar" },
+  { key = "Return", mods = "Alt|Shift", chars = "\u001b[13;4u" }
+]
