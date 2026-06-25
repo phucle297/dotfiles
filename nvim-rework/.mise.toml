@@ -1,0 +1,16 @@
+[tools]
+node = "24"
+go = "1.25"
+
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:sharkdp/fd" = "latest"
+"aqua:junegunn/fzf" = "latest"
+"aqua:astral-sh/uv" = "latest"
+"aqua:JohnnyMorganz/StyLua" = "latest"
+
+"npm:typescript-language-server" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+
+"cargo:taplo-cli" = "latest"
+
