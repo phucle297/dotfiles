@@ -47,6 +47,8 @@ require('nvim-tree').setup {
 
     map('h', api.node.navigate.parent_close, 'Close Directory')
     map('l', api.node.open.edit, 'Open')
+    map('s', api.node.open.horizontal, 'Open: Horizontal Split')
+    map('S', api.node.open.vertical, 'Open: Vertical Split')
   end,
 }
 

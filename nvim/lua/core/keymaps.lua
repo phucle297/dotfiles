@@ -4,13 +4,26 @@ local opts = { noremap = true, silent = true }
 
 local function with_desc(desc) return vim.tbl_extend('force', opts, { desc = desc }) end
 
--- Move lines
+-- Move lines (works in all 4 modes: n / i / v / s; also o for operator-pending via v fallback)
 map('n', '<A-j>', ':m .+1<CR>==', with_desc 'Move line down')
 map('n', '<A-k>', ':m .-2<CR>==', with_desc 'Move line up')
 map('i', '<A-j>', '<Esc>:m .+1<CR>==gi', with_desc 'Move line down')
 map('i', '<A-k>', '<Esc>:m .-2<CR>==gi', with_desc 'Move line up')
 map('v', '<A-j>', ":m '>+1<CR>gv=gv", with_desc 'Move selection down')
 map('v', '<A-k>', ":m '<-2<CR>gv=gv", with_desc 'Move selection up')
+map('x', '<A-j>', ":m '>+1<CR>gv=gv", with_desc 'Move selection down')
+map('x', '<A-k>', ":m '<-2<CR>gv=gv", with_desc 'Move selection up')
+-- operator-pending: re-enter visual then move
+map('o', '<A-j>', function()
+  vim.cmd 'normal! v'
+  vim.cmd "m '>+1"
+  vim.cmd 'normal! gv'
+end, with_desc 'Move text-object down')
+map('o', '<A-k>', function()
+  vim.cmd 'normal! v'
+  vim.cmd "m '<-2"
+  vim.cmd 'normal! gv'
+end, with_desc 'Move text-object up')
 map({ 'n', 'i', 'v', 's' }, '<C-s>', '<Esc><Cmd>update<CR>', with_desc 'Save')
 -- end
 
@@ -21,8 +34,8 @@ map('n', '<C-a>', 'ggVG', with_desc 'Select all')
 -- end
 
 -- Better paste
-map('x', 'p', '"_dP', opts)
-map('x', 'P', '"_dP', opts)
+map('x', 'p', '"_dP', with_desc 'Paste without yanking deleted text')
+map('x', 'P', '"_dP', with_desc 'Paste without yanking deleted text')
 -- end
 
 -- Window navigation
@@ -81,7 +94,17 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Next / Previous buffer
-map('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
-map('n', '<leader>bd', '<Cmd>BufferClose<CR>', { desc = 'Close buffer' })
+map('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', with_desc 'Previous buffer')
+map('n', '<Tab>', '<Cmd>BufferNext<CR>', with_desc 'Next buffer')
+
+-- Close buffer
+map('n', '<leader>bd', '<Cmd>BufferClose<CR>', {
+  desc = 'Close buffer',
+})
+map('n', '<leader>bD', function()
+  vim.cmd 'BufferClose'
+  pcall(vim.api.nvim_win_close, 0, true)
+end, {
+  desc = 'Close buffer + window',
+})
 -- end

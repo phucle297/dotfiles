@@ -86,4 +86,5 @@ white   = "#ffffff"
 bindings = [
   { key = "Return", mods = "Alt", action = "ReceiveChar" },
   { key = "Return", mods = "Alt|Shift", chars = "\u001b[13;4u" }
+  { key = "Space", mods = "Control", chars = "\u001b[32;5u" },
 ]

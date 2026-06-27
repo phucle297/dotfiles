@@ -78,7 +78,7 @@ autocmd('LspAttach', {
   callback = function(ev)
     local opts = { buffer = ev.buf }
 
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'Hover' }))
   end,
 })
 -- end

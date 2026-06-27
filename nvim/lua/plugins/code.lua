@@ -1,5 +1,5 @@
 require('better_escape').setup {
-  timeout = 200,
+  timeout = 350,
   default_mappings = false,
 
   mappings = {
@@ -28,3 +28,13 @@ require('flash').setup {
     autojump = false,
   },
 }
+
+require('logsitter').setup {
+  path_format = 'default',
+  prefix = '🚀',
+  separator = '->',
+}
+vim.keymap.set('n', '<leader>lg', function() logsitter.log() end, {
+  desc = 'Log current node',
+  silent = true,
+})

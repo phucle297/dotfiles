@@ -20,12 +20,14 @@ vim.pack.add {
   { src = 'https://github.com/romgrk/barbar.nvim' },
   { src = 'https://github.com/folke/which-key.nvim' },
   { src = 'https://github.com/NvChad/nvim-colorizer.lua' },
+  { src = 'https://github.com/gaelph/logsitter.nvim' },
 }
 
 -- build native lib for blink.cmp v2
 pcall(function() require('blink.cmp').build():pwait() end)
 
 require 'plugins.theme'
+require 'plugins.mini'
 require 'plugins.fzf'
 require 'plugins.cmp'
 require 'plugins.lsp'
@@ -38,4 +40,4 @@ require 'plugins.ui'
 require 'plugins.highlights'
 require 'plugins.explorer'
 require 'plugins.heirline'
-require 'plugins.mini'
+require 'plugins.term'

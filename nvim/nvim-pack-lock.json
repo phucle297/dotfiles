@@ -56,6 +56,10 @@
       "rev": "e7ca7b92f996bcbc34beee8b244ea5ef6692b478",
       "src": "https://github.com/ggandor/leap.nvim"
     },
+    "logsitter.nvim": {
+      "rev": "845e78f4ae61aa9f18e3b37ec91606f464c971a3",
+      "src": "https://github.com/gaelph/logsitter.nvim"
+    },
     "mini.nvim": {
       "rev": "c594be5b095204e99473825ec2dee872e7409a4d",
       "src": "https://github.com/nvim-mini/mini.nvim"
@@ -108,6 +112,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "snacks.nvim": {
+      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "src": "https://github.com/folke/snacks.nvim"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
