@@ -43,3 +43,22 @@ require('hlchunk').setup {
 }
 
 require('barbar').setup {}
+
+require('colorizer').setup {
+  filetypes = {
+    'css',
+    'scss',
+    'sass',
+    'html',
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'vue',
+    'svelte',
+    'lua',
+  },
+  user_default_options = {
+    tailwind = true,
+  },
+}

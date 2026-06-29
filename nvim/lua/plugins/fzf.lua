@@ -11,6 +11,7 @@ fzf.setup {
       '--type f',
       '--hidden',
       '--follow',
+      '--no-ignore-vcs',
       '--exclude .git',
       '--exclude node_modules',
       '--exclude .next',
@@ -30,7 +31,7 @@ fzf.setup {
       '--hidden',
       '--glob=!{.git,node_modules,.next,dist,build,lock}',
     }, ' '),
-    file_ignore_patterns = { 'node_modules', '%.next', '/dist/', '/build/' },
+    file_ignore_patterns = { 'node_modules', '%.next', '/dist/', '/build/', '%.lock%', '%-lock.yaml' },
   },
 }
 
@@ -46,11 +47,16 @@ vim.keymap.set('n', '<leader>fF', function() fzf.files { git_root = true } end, 
 
 vim.keymap.set('n', '<leader>fW', function() fzf.live_grep { git_root = true } end, { desc = 'Live grep (git root)' })
 
-vim.keymap.set('n', '<leader>fO', function()
-  fzf.oldfiles {
-    cwd = fzf.path.git_root(vim.uv.cwd()) or vim.uv.cwd(),
-    cwd_only = true,
-  }
-end, { desc = 'Recent files (git root)' })
+vim.keymap.set(
+  'n',
+  '<leader>fO',
+  function()
+    fzf.oldfiles {
+      cwd = fzf.path.git_root(vim.uv.cwd()) or vim.uv.cwd(),
+      cwd_only = true,
+    }
+  end,
+  { desc = 'Recent files (git root)' }
+)
 
 vim.keymap.set('n', '<leader>,', function() fzf.buffers { sort_mru = true, sort_lastused = true } end, { desc = 'Buffers' })

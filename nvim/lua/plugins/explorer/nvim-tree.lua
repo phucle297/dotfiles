@@ -19,8 +19,13 @@ require('nvim-tree').setup {
     highlight_clipboard = 'none',
   },
 
+  filters = {
+    git_ignored = false,
+    dotfiles = false,
+  },
+
   on_attach = function(bufnr)
-    local explorer = require('plugins.explorer')
+    local explorer = require 'plugins.explorer'
     local api = require 'nvim-tree.api'
 
     api.config.mappings.default_on_attach(bufnr)

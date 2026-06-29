@@ -52,6 +52,10 @@
       "rev": "707049feaca9ae65abb3696eff9aefc7879e66aa",
       "src": "https://github.com/smoka7/hop.nvim"
     },
+    "lazygit.nvim": {
+      "rev": "a04ad0dbc725134edbee3a5eea29290976695357",
+      "src": "https://github.com/kdheepak/lazygit.nvim"
+    },
     "leap.nvim": {
       "rev": "e7ca7b92f996bcbc34beee8b244ea5ef6692b478",
       "src": "https://github.com/ggandor/leap.nvim"

@@ -108,3 +108,7 @@ end, {
   desc = 'Close buffer + window',
 })
 -- end
+
+-- Lazygit
+map('n', '<leader>gg', '<Cmd>LazyGit<CR>', with_desc 'LazyGit')
+-- end
