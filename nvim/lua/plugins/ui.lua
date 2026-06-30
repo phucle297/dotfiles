@@ -62,3 +62,8 @@ require('colorizer').setup {
     tailwind = true,
   },
 }
+
+require('snacks').setup {
+  input = { enabled = true },
+  picker = { enabled = true },
+}

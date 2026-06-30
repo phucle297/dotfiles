@@ -29,12 +29,20 @@ require('flash').setup {
   },
 }
 
-require('logsitter').setup {
-  path_format = 'default',
-  prefix = '🚀',
-  separator = '->',
-}
-vim.keymap.set('n', '<leader>lg', function() logsitter.log() end, {
+vim.keymap.set('n', '<leader>lg', function()
+  local logsitter = require 'logsitter'
+
+  logsitter.setup {
+    path_format = 'default',
+    prefix = '🚀',
+    separator = '->',
+  }
+
+  logsitter.log()
+end, {
   desc = 'Log current node',
   silent = true,
 })
+vim.keymap.set('n', 'gr', function() require('trouble').open 'lsp_references' end)
+
+vim.keymap.set('n', '<leader>xx', function() require('trouble').toggle 'diagnostics' end)

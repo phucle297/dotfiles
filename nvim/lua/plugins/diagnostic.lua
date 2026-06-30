@@ -1,4 +1,3 @@
--- lua/plugins/diagnostic-float.lua
 local M = {}
 
 local state = { win = nil, buf = nil }

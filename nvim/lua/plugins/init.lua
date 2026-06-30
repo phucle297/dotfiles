@@ -22,6 +22,8 @@ vim.pack.add {
   { src = 'https://github.com/NvChad/nvim-colorizer.lua' },
   { src = 'https://github.com/gaelph/logsitter.nvim' },
   { src = 'https://github.com/kdheepak/lazygit.nvim' },
+  { src = 'https://github.com/folke/snacks.nvim' },
+  { src = 'https://github.com/folke/trouble.nvim' },
 }
 
 -- build native lib for blink.cmp v2
