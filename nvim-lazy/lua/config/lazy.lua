@@ -16,40 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- Core LazyVim
+    -- Core LazyVim (extras load from lazyvim.json via LazyExtras / xtras.lua)
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-
-    -- ===== ENABLE EXTRAS =====
-
-    -- LSP / Languages
-    { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    { import = "lazyvim.plugins.extras.lang.helm" },
-    { import = "lazyvim.plugins.extras.lang.sql" },
-
-    -- AI
-    { import = "lazyvim.plugins.extras.ai.copilot" },
-
-    -- Linting and formatting
-    { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.formatting.biome" },
-
-    -- UI
-    { import = "lazyvim.plugins.extras.ui.mini-starter" },
-    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
-
-    -- Coding
-    { import = "lazyvim.plugins.extras.coding.mini-comment" },
-    { import = "lazyvim.plugins.extras.coding.mini-snippets" },
-
-    -- Editor
-    { import = "lazyvim.plugins.extras.editor.neo-tree" },
-    { import = "lazyvim.plugins.extras.editor.navic" },
-    { import = "lazyvim.plugins.extras.editor.mini-diff" },
-    { import = "lazyvim.plugins.extras.editor.fzf" },
 
     -- ===== CUSTOM PLUGINS =====
     { import = "plugins" },

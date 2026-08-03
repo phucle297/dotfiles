@@ -4,8 +4,7 @@ return {
     opts = {
       ensure_installed = {
         -- ===== Language Servers =====
-        -- TypeScript / JavaScript
-        "typescript-language-server",
+        -- TypeScript: tsgo from PATH (not Mason). See vim.g.lazyvim_ts_lsp.
 
         -- Python
         "pyright",

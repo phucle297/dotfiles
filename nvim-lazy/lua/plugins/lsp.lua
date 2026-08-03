@@ -99,6 +99,13 @@ return {
           },
           },
           stylua = { enabled = false },
+          -- TypeScript: tsgo only (see vim.g.lazyvim_ts_lsp in options.lua)
+          tsgo = {
+            mason = false, -- uses system/npm `tsgo` on PATH
+          },
+          vtsls = { enabled = false },
+          ts_ls = { enabled = false },
+          tsserver = { enabled = false },
           lua_ls = {
             -- mason = false, -- set to false if you don't want this server to be installed with mason
             -- Use this to add any additional keymaps
