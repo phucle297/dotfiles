@@ -1,0 +1,76 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // Better escape
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+      "k j": "vim::NormalBefore",
+      "j j": "vim::NormalBefore",
+      "k k": "vim::NormalBefore",
+    },
+  },
+
+  // Normal-mode editor shortcuts
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // Panels
+      "space e": "project_panel::Toggle",
+      "space t f": "terminal_panel::ToggleFocus",
+
+      // Buffers
+      "space b d": "pane::CloseActiveItem",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+
+      // FZF-like navigation
+      "space f f": "file_finder::Toggle",
+      "space f w": "pane::DeploySearch",
+
+      // Code
+      ", c r": "editor::Rename",
+      ", c a": "editor::ToggleCodeActions",
+
+      // LSP and diagnostics
+      "shift-k": "editor::Hover",
+      "g d": "editor::GoToDefinition",
+      "g j": "diagnostics::DeployCurrentFile",
+
+      // Selection
+      "ctrl-a": "editor::SelectAll",
+      "ctrl-c": ["workspace::SendKeystrokes", "g g shift-v shift-g y"],
+    },
+  },
+  // Project panel split shortcuts
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space e": "project_panel::Toggle",
+      "s": "project_panel::OpenSplitHorizontal",
+      "shift-s": "project_panel::OpenSplitVertical",
+      "a": "project_panel::NewFile",
+      "d": "project_panel::Delete",
+      "c": "project_panel::Copy",
+      "x": "project_panel::Cut",
+      "p": "project_panel::Paste",
+      "r": "project_panel::Rename",
+      "u": "project_panel::Undo",
+      "ctrl-r": "project_panel::Redo",
+    },
+  },
+  // Move line up/down
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+    },
+  },
+]

@@ -1,0 +1,138 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "telemetry": {
+    "metrics": true,
+  },
+  "lsp": {
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "all",
+          "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayVariableTypeHints": true,
+          "includeInlayVariableTypeHintsWhenTypeMatchesName": false,
+          "includeInlayPropertyDeclarationTypeHints": true,
+          "includeInlayFunctionLikeReturnTypeHints": true,
+          "includeInlayEnumMemberValueHints": true,
+        },
+      },
+    },
+    "eslint": {
+      "initialization_options": {
+        "run_formatter": true,
+      },
+    },
+  },
+  "languages": {
+    "TypeScript": {
+      "language_servers": [
+        "typescript-language-server",
+        "!vtsls",
+        "!tsgo",
+        "eslint",
+      ],
+      "formatter": "prettier",
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+      },
+      "format_on_save": "on",
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-language-server",
+        "!vtsls",
+        "!tsgo",
+        "eslint",
+      ],
+      "formatter": "prettier",
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+      },
+      "format_on_save": "on",
+    },
+    "JavaScript": {
+      "language_servers": [
+        "typescript-language-server",
+        "!vtsls",
+        "!tsgo",
+        "eslint",
+      ],
+      "formatter": "prettier",
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true,
+      },
+      "format_on_save": "on",
+    },
+  },
+  "relative_line_numbers": true,
+  "vim_mode": true,
+  "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "cursor_blink": true,
+  "buffer_font_size": 16,
+  "buffer_font_family": "JetBrains Mono",
+  "terminal": {
+    "font_size": 18,
+    "font_family": "JetBrains Mono",
+  },
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "**/build",
+    "**/.github",
+  ],
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "indent_guides": {
+    "render": true,
+    "character": "│",
+    "skip_first_level": false,
+  },
+  "vim": {
+    "use_multiline_registers": true,
+    "surround": true,
+    "sneak": true,
+  },
+  "icon_theme": "Catppuccin Macchiato",
+  "project_panel": {
+    "dock": "left",
+    "file_icons": true,
+  },
+  "wsl_connections": [
+    {
+      "distro_name": "archlinux",
+      "user": null,
+      "projects": [
+        {
+          "paths": [
+            "/home/permees/Projects/github.com/gigsberg-org/gigsberg-wlb",
+          ],
+        },
+      ],
+    },
+  ],
+  "cli_default_open_behavior": "existing_window",
+  "base_keymap": "VSCode",
+  "ui_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark Pro",
+  },
+}
