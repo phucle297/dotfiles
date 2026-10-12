@@ -1,69 +1,195 @@
-require('noice').setup {
-  cmdline = { enabled = true, view = 'cmdline_popup' },
+return {
+	{
+		"vague-theme/vague.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		config = function(_, opts)
+			require("vague").setup(opts)
+			vim.cmd.colorscheme("vague")
+		end,
+	},
+	-- messages, cmdline and the popupmenu
+	{
+		"folke/noice.nvim",
+		opts = function(_, opts)
+			table.insert(opts.routes, {
+				filter = {
+					event = "notify",
+					find = "No information available",
+				},
+				opts = { skip = true },
+			})
+			local focused = true
+			vim.api.nvim_create_autocmd("FocusGained", {
+				callback = function()
+					focused = true
+				end,
+			})
+			vim.api.nvim_create_autocmd("FocusLost", {
+				callback = function()
+					focused = false
+				end,
+			})
+			table.insert(opts.routes, 1, {
+				filter = {
+					cond = function()
+						return not focused
+					end,
+				},
+				view = "notify_send",
+				opts = { stop = false },
+			})
 
-  popupmenu = { enabled = true, backend = 'nui' },
+			opts.commands = {
+				all = {
+					-- options for the message history that you get with `:Noice`
+					view = "split",
+					opts = { enter = true, format = "details" },
+					filter = {},
+				},
+			}
 
-  views = {
-    cmdline_popup = {
-      position = { row = 5, col = '50%' },
-      size = { width = 70, height = 'auto' },
-    },
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "markdown",
+				callback = function(event)
+					vim.schedule(function()
+						require("noice.text.markdown").keys(event.buf)
+					end)
+				end,
+			})
 
-    popupmenu = {
-      relative = 'editor',
-      position = { row = 8, col = '50%' },
-      size = { width = 70, height = 10 },
-      border = { style = 'rounded' },
-    },
-  },
+			opts.presets.lsp_doc_border = true
+		end,
+	},
 
-  presets = {
-    command_palette = false,
-    bottom_search = true,
-    long_message_to_split = true,
-    lsp_doc_border = true,
-  },
-}
+	{
+		"rcarriga/nvim-notify",
+		opts = {
+			timeout = 5000,
+		},
+	},
 
-require('hlchunk').setup {
-  chunk = {
-    enable = true,
-    style = {
-      { fg = '#ffd036' },
-      { fg = '#c21f30' },
-    },
-  },
-  line_num = {
-    enable = true,
-    style = {
-      { fg = '#ffd036' },
-      { fg = '#c21f30' },
-    },
-  },
-}
+	{
+		"snacks.nvim",
+		opts = {
+			scroll = { enabled = false },
+		},
+		keys = {
+			{ "<leader>e", false },
+		},
+	},
 
-require('barbar').setup {}
+	-- buffer line
+	{
+		"akinsho/bufferline.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
+			{ "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
+		},
+		opts = {
+			options = {
+				mode = "tabs",
+				-- separator_style = "slant",
+				show_buffer_close_icons = false,
+				show_close_icon = false,
+			},
+		},
+	},
 
-require('colorizer').setup {
-  filetypes = {
-    'css',
-    'scss',
-    'sass',
-    'html',
-    'javascript',
-    'javascriptreact',
-    'typescript',
-    'typescriptreact',
-    'vue',
-    'svelte',
-    'lua',
-  },
-  user_default_options = {
-    tailwind = true,
-  },
-}
+	-- filename
+	{
+		"b0o/incline.nvim",
+		dependencies = { "craftzdog/solarized-osaka.nvim" },
+		event = "BufReadPre",
+		priority = 1200,
+		config = function()
+			local colors = require("solarized-osaka.colors").setup()
+			require("incline").setup({
+				highlight = {
+					groups = {
+						InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
+						InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
+					},
+				},
+				window = { margin = { vertical = 0, horizontal = 1 } },
+				hide = {
+					cursorline = true,
+				},
+				render = function(props)
+					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+					if vim.bo[props.buf].modified then
+						filename = "[+] " .. filename
+					end
 
-require('snacks').setup {
-  input = { enabled = true },
-  picker = { enabled = true },
+					local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+					return { { icon, guifg = color }, { " " }, { filename } }
+				end,
+			})
+		end,
+	},
+
+	-- statusline
+	{
+		"nvim-lualine/lualine.nvim",
+		opts = function(_, opts)
+			local LazyVim = require("lazyvim.util")
+
+			-- CWD: between mode and branch
+			table.insert(opts.sections.lualine_b, 1, {
+				function()
+					return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+				end,
+				icon = "󰉋",
+				color = function()
+					local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+					local accent = vim.api.nvim_get_hl(0, { name = "Function" })
+
+					return {
+						fg = string.format("#%06x", normal.bg or 0x1e1e2e),
+						bg = string.format("#%06x", accent.fg or 0x89b4fa),
+						gui = "bold",
+					}
+				end,
+				separator = {
+					left = "",
+					right = "",
+				},
+				padding = { left = 1, right = 1 },
+			})
+
+			opts.sections.lualine_c[4] = {
+				LazyVim.lualine.pretty_path({
+					length = 0,
+					relative = "cwd",
+					modified_hl = "MatchParen",
+					directory_hl = "",
+					filename_hl = "Bold",
+					modified_sign = "",
+					readonly_icon = " 󰌾 ",
+				}),
+			}
+		end,
+	},
+	{
+		"folke/snacks.nvim",
+		opts = function(_, opts)
+			opts.dashboard.enabled = true
+			opts.dashboard.preset.header = table.concat({
+				" _____         _____             ",
+				"|  _  |___ ___|     |___ ___ ___ ",
+				"|   __| -_|  _| | | | -_| -_|_ -|",
+				"|__|  |___|_| |_|_|_|___|___|___|",
+			}, "\n")
+
+			for _, item in ipairs(opts.dashboard.preset.keys) do
+				if item.key == "f" then
+					item.action = ":lua Snacks.dashboard.pick('files', { hidden = true, ignored = true })"
+					break
+				end
+			end
+		end,
+	},
+	{ "svampkorg/moody.nvim", opts = {} },
 }

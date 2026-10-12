@@ -1,40 +1,66 @@
-local treesitter = require 'nvim-treesitter'
+return {
+	{
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
 
-treesitter.setup { install_dir = vim.fn.stdpath 'data' .. '/site' }
+		config = function()
+			local ts = require("nvim-treesitter")
 
-local parsers = {
-  'lua',
-  'vim',
-  'vimdoc',
-  'javascript',
-  'typescript',
-  'tsx',
-  'json',
-  'html',
-  'css',
-  'scss',
-  'markdown',
-  'markdown_inline',
-  'go',
-  'gomod',
-  'gowork',
-  'gosum',
-  'c',
-  'cpp',
-  'rust',
-  'python',
+			local parsers = {
+				"astro",
+				"cmake",
+				"cpp",
+				"css",
+				"fish",
+				"gitignore",
+				"go",
+				"graphql",
+				"http",
+				"java",
+				"javascript",
+				"php",
+				"rust",
+				"scss",
+				"sql",
+				"svelte",
+				"tsx",
+				"typescript",
+
+				-- useful for Neovim config
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+
+				-- markdown / MDX
+				"markdown",
+				"markdown_inline",
+			}
+
+			-- Install missing parsers
+			ts.install(parsers)
+
+			-- Enable Tree-sitter for supported filetypes
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					local ft = vim.bo[args.buf].filetype
+					local lang = vim.treesitter.language.get_lang(ft)
+
+					if lang then
+						pcall(vim.treesitter.start, args.buf, lang)
+					end
+				end,
+			})
+
+			-- MDX
+			vim.filetype.add({
+				extension = {
+					mdx = "mdx",
+				},
+			})
+
+			vim.treesitter.language.register("markdown", "mdx")
+		end,
+	},
 }
-
-treesitter.install(parsers)
-
-local ts_indent_enabled = { lua = true, go = true, rust = true, python = true }
-
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(args)
-    if vim.b[args.buf].large_file then return end
-
-    pcall(vim.treesitter.start, args.buf)
-
-    if ts_indent_enabled[vim.bo[args.buf].filetype] then pcall(function() vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end) end
-  end,
-})
