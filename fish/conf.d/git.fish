@@ -159,5 +159,5 @@ alias gwip='git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit 
 alias gunwip='git log -n 1 | grep -q -c wip; and git reset HEAD~1'
 alias gaa='git add .'
 alias gpf='git push --force-with-lease'
-alias glol='git log --oneline --decorate --graph'
+alias glol='git log -1 --oneline'
 alias gcoll='git checkout develop && git pull'
